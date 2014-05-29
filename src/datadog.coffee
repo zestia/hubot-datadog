@@ -12,6 +12,8 @@
 # Author
 #   tombell
 
+https = require 'https'
+
 dog = require 'dogapi'
 moment = require 'moment'
 
@@ -45,14 +47,9 @@ module.exports = (robot) ->
     client.add_snapshot snapshot, (err, result, status) ->
       return msg.send "Could not generate the graph snapshot: #{err}" if err?
 
-      robot.http(result['snapshot_url'])
-        .get() (err, res, body) ->
-          if err
-            msg.send "Could not generate the graph snapshot: #{err}"
-          else
-            setTimeout ->
-              msg.send "#{result['snapshot_url']}#png"
-            , 1000
+      https.get result['snapshort_url'], res ->
+        res.on 'end', ->
+          msg.send "#{result['snapshot_url']}#png"
 
   robot.respond /metric(s)? search (.*)/i, (msg) ->
     metric = msg.match[2]
