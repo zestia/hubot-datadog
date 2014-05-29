@@ -50,7 +50,9 @@ module.exports = (robot) ->
           if err
             msg.send "Could not generate the graph snapshot: #{err}"
           else
-            msg.send "#{result['snapshot_url']}#png"
+            setTimeout ->
+              msg.send "#{result['snapshot_url']}#png"
+            , 1000
 
   robot.respond /metric(s)? search (.*)/i, (msg) ->
     metric = msg.match[2]
