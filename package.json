@@ -1,0 +1,42 @@
+{
+  "name": "hubot-datadog",
+  "description": "Query Datadog using Hubot",
+  "version": "1.0.0",
+  "author": "Tom Bell <tomb@tomb.io>",
+  "license": "MIT",
+
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "datadog",
+    "metrics"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zestia/hubot-datadog.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/zestia/hubot-datadog/issues"
+  },
+
+  "dependencies": {
+    "dogapi": "~0.1",
+    "moment": "~2.6"
+  },
+
+  "devDependencies": {
+    "coffee-script": "*",
+    "mocha": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "sinon": "*"
+  },
+
+  "main": "index.coffee",
+
+  "scripts": {
+    "test": "script/test"
+  }
+}
