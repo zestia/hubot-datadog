@@ -1,5 +1,5 @@
 # Description:
-#   Query your Datadog metrics and events.
+#   Query Datadog using Hubot.
 #
 # Configuration:
 #   HUBOT_DATADOG_APIKEY - Your Datadog API key
