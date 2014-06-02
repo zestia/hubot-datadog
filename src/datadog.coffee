@@ -49,7 +49,7 @@ module.exports = (robot) ->
 
       data = ''
 
-      req = https.get result['snapshort_url'], res ->
+      req = https.get result['snapshot_url'], (res) ->
         res.on 'data', (chunk) ->
           data += chunk
 
