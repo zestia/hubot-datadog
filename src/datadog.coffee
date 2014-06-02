@@ -47,9 +47,17 @@ module.exports = (robot) ->
     client.add_snapshot snapshot, (err, result, status) ->
       return msg.send "Could not generate the graph snapshot: #{err}" if err?
 
-      https.get result['snapshort_url'], res ->
+      data = ''
+
+      req = https.get result['snapshort_url'], res ->
+        res.on 'data', (chunk) ->
+          data += chunk
+
         res.on 'end', ->
           msg.send "#{result['snapshot_url']}#png"
+
+      req.on 'error', (err) ->
+        msg.send "Could not generate the graph snapshot: #{err}"
 
   robot.respond /metric(s)? search (.*)/i, (msg) ->
     metric = msg.match[2]
