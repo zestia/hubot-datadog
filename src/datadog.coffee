@@ -47,17 +47,15 @@ module.exports = (robot) ->
     client.add_snapshot snapshot, (err, result, status) ->
       return msg.send "Could not generate the graph snapshot: #{err}" if err?
 
-      data = ''
+      imageUrl = result['snapshot_url']
+      file = fs.createWriteStream('file.jpg')
 
-      req = https.get result['snapshot_url'], (res) ->
-        res.on 'data', (chunk) ->
-          data += chunk
+      request = http.get imageUrl, (response) ->
+        response.pipe(file)
 
-        res.on 'end', ->
-          msg.send "#{result['snapshot_url']}#png"
-
-      req.on 'error', (err) ->
-        msg.send "Could not generate the graph snapshot: #{err}"
+        file.on 'finish', ->
+          file.close ->
+            msg.send imageUrl
 
   robot.respond /metric(s)? search (.*)/i, (msg) ->
     metric = msg.match[2]
