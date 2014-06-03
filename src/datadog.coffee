@@ -12,9 +12,10 @@
 # Author
 #   tombell
 
+fs    = require 'fs'
 https = require 'https'
 
-dog = require 'dogapi'
+dog    = require 'dogapi'
 moment = require 'moment'
 
 module.exports = (robot) ->
@@ -50,7 +51,7 @@ module.exports = (robot) ->
       imageUrl = result['snapshot_url']
       file = fs.createWriteStream('file.jpg')
 
-      request = http.get imageUrl, (response) ->
+      request = https.get imageUrl, (response) ->
         response.pipe(file)
 
         file.on 'finish', ->
