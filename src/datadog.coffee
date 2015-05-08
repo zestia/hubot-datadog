@@ -22,10 +22,10 @@ module.exports = (robot) ->
   unless process.env.HUBOT_DATADOG_APPKEY?
     return robot.logger.error "HUBOT_DATADOG_APPKEY env var is not set"
 
-  dog.initialize{
+  dog.initialize({
     api_key: process.env.HUBOT_DATADOG_APIKEY
     app_key: process.env.HUBOT_DATADOG_APPKEY
-  }
+  })
 
   robot.respond /graph( me)? -(\d+)([smhdwMy]) (.*)/i, (msg) ->
     time = msg.match[2]
