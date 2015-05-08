@@ -1,7 +1,7 @@
 {
   "name": "hubot-datadog",
   "description": "Query Datadog using Hubot",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "author": "Tom Bell <tomb@tomb.io>",
   "license": "MIT",
 
