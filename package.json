@@ -22,8 +22,8 @@
   },
 
   "dependencies": {
-    "dogapi": "~0.1",
-    "moment": "~2.8"
+    "dogapi": "~1.0",
+    "moment": "~2.10"
   },
 
   "devDependencies": {

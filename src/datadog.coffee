@@ -36,13 +36,7 @@ module.exports = (robot) ->
     end = now.unix()
     start = now.subtract(unit, time).unix()
 
-    snapshot = {
-      metric_query: metric
-      start: start
-      end: end
-    }
-
-    client.add_snapshot snapshot, (err, result, status) ->
+    client.snapshot metric, start, end, (err, result) ->
       return msg.send "Could not generate the graph snapshot: #{err}" if err?
 
       setTimeout ->
@@ -52,7 +46,7 @@ module.exports = (robot) ->
   robot.respond /metric(s)? search (.*)/i, (msg) ->
     metric = msg.match[2]
 
-    client.search metric, (err, result, status) ->
+    client.search metric, (err, result) ->
       msg.send "Could not fetch search results: #{err}" if err?
 
       metrics = result['results']['metrics']
