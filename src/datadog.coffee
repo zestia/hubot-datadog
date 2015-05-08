@@ -22,7 +22,7 @@ module.exports = (robot) ->
   unless process.env.HUBOT_DATADOG_APPKEY?
     return robot.logger.error "HUBOT_DATADOG_APPKEY env var is not set"
 
-  client = new dog {
+  dog.initialize{
     api_key: process.env.HUBOT_DATADOG_APIKEY
     app_key: process.env.HUBOT_DATADOG_APPKEY
   }
@@ -36,7 +36,7 @@ module.exports = (robot) ->
     end = now.unix()
     start = now.subtract(unit, time).unix()
 
-    client.snapshot metric, start, end, (err, result) ->
+    dog.graph.snapshot metric, start, end, (err, result) ->
       return msg.send "Could not generate the graph snapshot: #{err}" if err?
 
       setTimeout ->
@@ -46,7 +46,7 @@ module.exports = (robot) ->
   robot.respond /metric(s)? search (.*)/i, (msg) ->
     metric = msg.match[2]
 
-    client.search metric, (err, result) ->
+    dog.infrastructure.search metric, (err, result) ->
       msg.send "Could not fetch search results: #{err}" if err?
 
       metrics = result['results']['metrics']
