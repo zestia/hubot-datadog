@@ -30,9 +30,7 @@ module.exports = (robot) ->
   robot.respond /graph( me)? -(\d+)([smhdwMy]) (.*)/i, (msg) ->
     time = msg.match[2]
     unit = msg.match[3]
-    metric = msg.match[4]
-
-    console.log "DEBUG: #{metric}"
+    metric = msg.match[4].replace('http://', '')
 
     now = moment()
     end = now.unix()
