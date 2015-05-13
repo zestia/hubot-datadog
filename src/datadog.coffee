@@ -32,6 +32,8 @@ module.exports = (robot) ->
     unit = msg.match[3]
     metric = msg.match[4]
 
+    console.log "DEBUG: #{metric}"
+
     now = moment()
     end = now.unix()
     start = now.subtract(unit, time).unix()
