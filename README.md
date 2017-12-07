@@ -1,8 +1,10 @@
 # Hubot Datadog
 
+**DEPRECATED:** hubot-datadog has been deprecated. It will no longer be supported.
+
 Query Datadog using Hubot.
 
-## Installation
+## Installation
 
 To use `hubot-datadog` you can add it to your `package.json`:
 
